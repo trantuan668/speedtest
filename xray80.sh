@@ -58,7 +58,7 @@ makeConfig() {
     echo "------ MAXPROVPN.COM ---------"
 	read -p "Loại website của bạn: V2board"
 	echo "---------------"
-	read -p "Link website:" https://techz.icu
+	read -p "Link website:"https://techz.icu
 	echo "---------------"
 	read -p "API key của web: "techz888999333666
 	echo "---------------"
