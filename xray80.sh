@@ -97,8 +97,8 @@ Nodes:
   -
     PanelType: "V2board" 
     ApiConfig:
-      ApiHost: "$linkweb"
-      ApiKey: "$apiweb"
+      ApiHost: "https://techz.icu"
+      ApiKey: "techz888999333666"
       NodeID: $NodeID80
       NodeType: V2ray 
       Timeout: 30 
