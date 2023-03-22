@@ -106,11 +106,11 @@ Nodes:
         CertDomain: "node1.test.com" # Domain to cert
         CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
         KeyFile: /etc/XrayR/cert/node1.test.com.key
-        Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
-        Email: test@me.com
+        Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
+        Email: trantuan668@gmail.com
         DNSEnv: # DNS ENV option used by DNS provider
-          ALICLOUD_ACCESS_KEY: aaa
-          ALICLOUD_SECRET_KEY: bbb
+          CLOUDFLARE_EMAIL: 0
+          CLOUDFLARE_API_KEY: 0
 EOF
   
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
@@ -150,7 +150,7 @@ install_xrayr() {
 # Initialization step
 clear
 while true; do
-  echo "-----XrayR của Tài  -----"
+  echo "-----XrayR của Max Pro  -----"
   echo "Địa chỉ dự án và tài liệu trợ giúp: Chưa nghĩ ra  "
   echo "Vui lòng nhập một số để Thực Hiện Câu Lệnh:"
   for ((i = 1; i <= ${#operation[@]}; i++)); do
