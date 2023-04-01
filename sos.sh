@@ -208,8 +208,8 @@ Nodes:
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: test@me.com
         DNSEnv: # DNS ENV option used by DNS provider
-          CLOUDFLARE_EMAIL: khacquang2010@gmail.com
-          CLOUDFLARE_API_KEY: ce5ee1bb3503527d0fab1a128aef22f41ec6d
+          CLOUDFLARE_EMAIL: 111
+          CLOUDFLARE_API_KEY: 3333
 EOF
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./aiko.yml
   	if [[ ${port} == "443" ]]; then
