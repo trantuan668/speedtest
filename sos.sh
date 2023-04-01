@@ -172,8 +172,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://vpn.xn--ss-8ja.vn"
-      ApiKey: "Zicfreesingaporee"
+      ApiHost: "https://maxprovpn.com"
+      ApiKey: "trantuan66889933"
       NodeID: 1
       NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
