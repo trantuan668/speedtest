@@ -137,7 +137,7 @@ update_xrayr() {
 
 # Install xrayr
 install_xrayr() {
- bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh)
+ wget -N https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh && bash install.sh
   clear
  pre_install
  config_xrayr
