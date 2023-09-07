@@ -35,6 +35,8 @@ iptables -I INPUT -s 151.101.2.219 -j DROP
 iptables -I INPUT -s 151.101.130.219 -j DROP
 iptables -I INPUT -s speedtest.vn -j DROP
 iptables -I INPUT -s 203.119.73.32 -j DROP
+iptables -I INPUT -s speedcheck.org -j DROP
+iptables -I INPUT -s 52.211.50.43 -j DROP
 iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
