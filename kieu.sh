@@ -151,7 +151,7 @@ Nodes:
           CLOUDFLARE_EMAIL: dtai45412@gmail.com
           CLOUDFLARE_API_KEY: 7f63bf3bcaa7a6759b9b2160cddba6723495f
   -
-    PanelType: "AikoPanel" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
+    PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
     ApiConfig:
       ApiHost: "https://maxprovpn.com/"
       ApiKey: "trantuan66889933"
@@ -215,7 +215,12 @@ Nodes:
           CLOUDFLARE_EMAIL: dtai45412@gmail.com
           CLOUDFLARE_API_KEY: 7f63bf3bcaa7a6759b9b2160cddba6723495f
 EOF
-rm -rf /etc/systemd/system/multi-user.target.wants/AikoR.service # Thêm dòng này để xóa thư mục /etc/AikoR
+ sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
+  sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
+  sed -i "s|SpeedLimit:.*|SpeedLimit: ${SpeedLimit}|" ./config.yml
+  sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
+
+  }
 	xrayr restart
 	green "Đã cài đặt và cập nhật XrayR với bảng điều khiển thành công！"
 	exit 1
