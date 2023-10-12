@@ -14,18 +14,6 @@ pre_install(){
     a=0
   while [ $a -lt $n ]
  do
- read -p "  Nhập domain web (không cần https://): " api_host
-    [ -z "${api_host}" ] && api_host=0
-    echo "--------------------------------"
-  echo "  Web của bạn là https://${api_host}"
-  echo "--------------------------------"
-  #key web
-  read -p "  Nhập key của web: " api_key
-    [ -z "${api_key}" ] && api_key=0
-  echo "--------------------------------"
-  echo "  Key của Web là ${api_key}"
-  echo "--------------------------------"
-
   echo -e "  [1] V2ray"
   echo -e "  [2] Trojan"
    read -p "  Nhập loại Node: " NodeType
@@ -78,20 +66,6 @@ clone_node(){
     a=0
   while [ $a -lt $n ]
   do
-  
-  #link web 
-   read -p "  Nhập domain web (không cần https://): " api_host
-    [ -z "${api_host}" ] && api_host=0
-    echo "--------------------------------"
-  echo "  Web của bạn là https://${api_host}"
-  echo "--------------------------------"
-  #key web
-  read -p "  Nhập key của web: " api_key
-    [ -z "${api_key}" ] && api_key=0
-  echo "--------------------------------"
-  echo "  Key của web là ${api_key}"
-  echo "--------------------------------"
-
   echo -e "  [1] V2ray"
   echo -e "  [2] Trojan"
    read -p "  Nhập loại Node: " NodeType
