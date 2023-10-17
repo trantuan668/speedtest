@@ -137,7 +137,7 @@ update_xrayr() {
 
 # Install xrayr
 install_xrayr() {
- bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/maxprovpn/main/install.sh)
+ bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/master/install.sh)
   clear
  pre_install
  config_xrayr
