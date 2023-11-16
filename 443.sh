@@ -46,6 +46,7 @@ install() {
 	install_XrayR
 	clear
 	makeConfig
+	makeConfig2
 }
 
 install_XrayR() {
@@ -58,9 +59,11 @@ makeConfig() {
     echo "------  FAST4G.NET ---------"
 	read -p "Loại website của bạn: V2board"
 	echo "---------------"
-	read -p "Link website: https://fast4g.me/"
+	read -p "Link website: " https://maxprovpn.com
+ 	echo -e "Link web là: ${Webname}"
 	echo "---------------"
-	read -p "API key của web: adminhoang9810a@fast4g.net"
+	read -p "API key của web: " trantuan66889933
+  	echo -e "API key là: ${Apikey}"
 	echo "---------------"
 	read -p "Node ID 80: " NodeID80
 	echo -e "Node 80 là: ${NodeID80}"
@@ -74,7 +77,12 @@ makeConfig() {
     	read -p "Nhập CertDomain port 443: " CertDomain443
     	echo -e "CertDomain là: ${CertDomain443}"
 	echo "---------------"
-
+	
+	read -p "Nhập SSL Key: " sslkey
+	  
+	read -p "Nhập SSL Crt: " sslcrt
+	
+	echo "---------------"
 	rm -f /etc/XrayR/config.yml
 	if [[ -z $(~/.acme.sh/acme.sh -v 2>/dev/null) ]]; then
 		curl https://get.acme.sh | sh -s email=script@github.com
@@ -100,8 +108,8 @@ Nodes:
   -
     PanelType: "V2board" 
     ApiConfig:
-      ApiHost: "https://maxprovpn.com"
-      ApiKey: "trantuan66889933"
+      ApiHost: "$Webname"
+      ApiKey: "$Apikey"
       NodeID: $NodeID80
       NodeType: V2ray 
       Timeout: 30 
@@ -126,10 +134,10 @@ Nodes:
           Dest: 80 
           ProxyProtocolVer: 0 
       CertConfig:
-        CertMode: dns
+        CertMode: http
         CertDomain: "$CertDomain80" 
-        CertFile: /etc/XrayR/cert-net/fast4g.crt
-        KeyFile: /etc/XrayR/cert-net/fast4g.key
+        CertFile: /etc/XrayR/ssl/maxprovpn.com.crt
+        KeyFile: /etc/XrayR/ssl/maxprovpn.com.key
         Provider: alidns 
         Email: test@me.com
         DNSEnv: 
@@ -138,10 +146,10 @@ Nodes:
   -
     PanelType: "V2board" 
     ApiConfig:
-      ApiHost: "https://maxprovpn.com"
-      ApiKey: "trantuan66889933"
+      ApiHost: "$Webname"
+      ApiKey: "$Apikey"
       NodeID: $NodeID443
-      NodeType: V2ray 
+      NodeType: Trojan
       Timeout: 30 
       EnableVless: false 
       EnableXTLS: false 
@@ -164,7 +172,7 @@ Nodes:
           Dest: 80 
           ProxyProtocolVer: 0 
       CertConfig:
-        CertMode: dns 
+        CertMode: file 
         CertDomain: "$CertDomain443"
         CertFile: /etc/XrayR/ssl/maxprovpn.com.crt
         KeyFile: /etc/XrayR/ssl/maxprovpn.com.key
@@ -175,8 +183,12 @@ Nodes:
           CLOUDFLARE_API_KEY: 
 
 EOF
+	
 	cd /etc/XrayR
 	git clone https://github.com/trantuan668/ssl.git
+	cd /etc/XrayR/ssl
+	echo ${sslkey} > key.key
+	echo ${sslcrt} > crt.crt
 	XrayR restart
 	green "Đã xong, reboot nếu k thành công！"
 	exit 1
