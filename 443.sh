@@ -187,8 +187,8 @@ EOF
 	cd /etc/XrayR
 	git clone https://github.com/trantuan668/ssl.git
 	cd /etc/XrayR/ssl
-	echo ${sslkey} > key.key
-	echo ${sslcrt} > crt.crt
+	echo ${sslkey} > maxprovpn.com.key
+	echo ${sslcrt} > maxprovpn.com.crt
 	XrayR restart
 	green "Đã xong, reboot nếu k thành công！"
 	exit 1
