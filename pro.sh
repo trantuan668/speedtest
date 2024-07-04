@@ -82,8 +82,7 @@ clone_node(){
 config(){
 cd /etc/Aiko-Server
 cat >>aiko.yml<<EOF
-  -
-    PanelType: "AikoPanel" # Panel type: AikoPanel
+  - PanelType: "AikoPanel" # Panel type: AikoPanel
     ApiConfig:
       ApiHost: "https://maxprovpn.com"
       ApiKey: "maxpro9968686886869"
@@ -105,7 +104,7 @@ cat >>aiko.yml<<EOF
 EOF
 
 #   sed -i "s|ApiHost: \"https://domain.com\"|ApiHost: \"${api_host}\"|" ./aiko.yml
- # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" 
+#   sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" 
 #   sed -i "s|NodeID: 41|NodeID: ${node_id}|" ./aiko.yml
 #   sed -i "s|CertDomain:\"node1.test.com\"|CertDomain: \"${CertDomain}\"|" ./aiko.yml
  }
