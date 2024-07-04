@@ -114,77 +114,43 @@ read -p "  Nhập giới hạn thiết bị: " DeviceLimit
 
 
 config(){
-cd /etc/XrayR
-cat >>config.yml<<EOF
+cd /etc/Aiko-Server
+cat >>aiko.yml<<EOF
   -
-    PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
+    PanelType: "AikoPanel" # Panel type: AikoPanel
     ApiConfig:
       ApiHost: "https://maxprovpn.com"
-      ApiKey: "trantuan66889933"
-      NodeID: $node_id
-      NodeType: $NodeType # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
+      ApiKey: "maxpro9968686886869"
+      NodeID: 13
+      NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
-      EnableXTLS: false # Enable XTLS for V2ray and Trojan
-      SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
-      DeviceLimit: $DeviceLimit # Local settings will replace remote settings, 0 means disable
-      RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
+      RuleListPath: # /etc/Aiko-Server/rulelist Path to local rulelist file
     ControllerConfig:
-      ListenIP: 0.0.0.0 # IP address you want to listen
-      SendIP: 0.0.0.0 # IP address you want to send pacakage
-      UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
-      EnableDNS: false # Use custom DNS config, Please ensure that you set the dns.json well
-      DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
-      DisableUploadTraffic: false # Disable Upload Traffic to the panel
-      DisableGetRule: false # Disable Get Rule from the panel
-      DisableIVCheck: false # Disable the anti-reply protection for Shadowsocks
-      DisableSniffing: True # Disable domain sniffing
-      EnableProxyProtocol: false # Only works for WebSocket and TCP
-      AutoSpeedLimitConfig:
-        Limit: 0 # Warned speed. Set to 0 to disable AutoSpeedLimit (mbps)
-        WarnTimes: 0 # After (WarnTimes) consecutive warnings, the user will be limited. Set to 0 to punish overspeed user immediately.
-        LimitSpeed: 0 # The speedlimit of a limited user (unit: mbps)
-        LimitDuration: 0 # How many minutes will the limiting last (unit: minute)
-      GlobalDeviceLimitConfig:
-        Limit: 0 # The global device limit of a user, 0 means disable
-        RedisAddr: 127.0.0.1:6379 # The redis server address
-        RedisPassword: YOUR PASSWORD # Redis password
-        RedisDB: 0 # Redis DB
-        Timeout: 5 # Timeout for redis request
-        Expiry: 60 # Expiry time (second)
-      EnableFallback: false # Only support for Trojan and Vless
-      FallBackConfigs:  # Support multiple fallbacks
-        -
-          SNI: # TLS SNI(Server Name Indication), Empty for any
-          Alpn: # Alpn, Empty for any
-          Path: # HTTP PATH, Empty for any
-          Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/features/fallback.html for details.
-          ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
+      EnableProxyProtocol: false
+      DisableLocalREALITYConfig: false
+      EnableREALITY: false
+      REALITYConfigs:
+        Show: true
       CertConfig:
-        CertMode: file # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "$CertDomain" # Domain to cert
-        CertFile: /etc/XrayR/443.crt # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/443.key
-        Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
-        Email: test@me.com
-        DNSEnv: # DNS ENV option used by DNS provider
-          ALICLOUD_ACCESS_KEY: aaa
-          ALICLOUD_SECRET_KEY: bbb
+        CertMode: none # Option about how to get certificate: none, file
+        CertFile: /etc/Aiko-Server/cert/aiko_server.cert # Provided if the CertMode is file
+        KeyFile: /etc/Aiko-Server/cert/aiko_server.key
 EOF
 
-#   sed -i "s|ApiHost: \"https://domain.com\"|ApiHost: \"${api_host}\"|" ./config.yml
+#   sed -i "s|ApiHost: \"https://domain.com\"|ApiHost: \"${api_host}\"|" ./aiko.yml
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" 
-#   sed -i "s|NodeID: 41|NodeID: ${node_id}|" ./config.yml
-#   sed -i "s|DeviceLimit: 0|DeviceLimit: ${DeviceLimit}|" ./config.yml
-#   sed -i "s|SpeedLimit: 0|SpeedLimit: ${SpeedLimit}|" ./config.yml
-#   sed -i "s|CertDomain:\"node1.test.com\"|CertDomain: \"${CertDomain}\"|" ./config.yml
+#   sed -i "s|NodeID: 41|NodeID: ${node_id}|" ./aiko.yml
+#   sed -i "s|DeviceLimit: 0|DeviceLimit: ${DeviceLimit}|" ./aiko.yml
+#   sed -i "s|SpeedLimit: 0|SpeedLimit: ${SpeedLimit}|" ./aiko.yml
+#   sed -i "s|CertDomain:\"node1.test.com\"|CertDomain: \"${CertDomain}\"|" ./aiko.yml
  }
 
 case "${num}" in
-1) bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/master/install.sh)
+1) wget --no-check-certificate -O Aiko-Server.sh https://raw.githubusercontent.com/AikoPanel/AikoServer/master/install.sh && bash Aiko-Server.sh
 openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/XrayR/443.crt -keyout /etc/XrayR/443.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
-cd /etc/XrayR
-  cat >config.yml <<EOF
+cd /etc/Aiko-Server
+  cat >aiko.yml <<EOF
 Log:
   Level: none # Log level: none, error, warning, info, debug 
   AccessPath: # /etc/XrayR/access.Log
@@ -202,7 +168,7 @@ Nodes:
 EOF
 pre_install
 cd /root
-xrayr start
+Aiko-Server restart
  ;;
  2) cd /etc/XrayR
 cat >config.yml <<EOF
@@ -223,11 +189,11 @@ Nodes:
 EOF
 pre_install
 cd /root
-xrayr restart
+Aiko-Server restart
  ;;
  3) cd /etc/XrayR
  clone_node
  cd /root
-  xrayr restart
+  Aiko-Server restart
 ;;
 esac
