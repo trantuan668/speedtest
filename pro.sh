@@ -37,21 +37,6 @@ pre_install(){
   echo "-------------------------------"
   
 
-  #giới hạn thiết bị
-read -p "  Nhập giới hạn thiết bị: " DeviceLimit
-  [ -z "${DeviceLimit}" ] && DeviceLimit="0"
-  echo "-------------------------------"
-  echo "  Thiết bị tối đa là ${DeviceLimit}"
-  echo "-------------------------------"
-  
-  
-  #IP vps
- read -p "  Nhập địa chỉ Node: " CertDomain
-  [ -z "${CertDomain}" ] && CertDomain="0"
- echo "-------------------------------"
-  echo "  Địa chỉ Node là ${CertDomain}"
- echo "-------------------------------"
-
  config
   a=$((a+1))
 done
@@ -88,29 +73,10 @@ clone_node(){
   echo "-------------------------------"
   
 
-  #giới hạn thiết bị
-read -p "  Nhập giới hạn thiết bị: " DeviceLimit
-  [ -z "${DeviceLimit}" ] && DeviceLimit="0"
-  echo "-------------------------------"
-  echo "  Thiết bị tối đa là ${DeviceLimit}"
-  echo "-------------------------------"
-  
-  #IP vps
- read -p "  Nhập địa chỉ Node: " CertDomain
-  [ -z "${CertDomain}" ] && CertDomain="0"
- echo "-------------------------------"
-  echo "  Địa chỉ Node là ${CertDomain}"
- echo "-------------------------------"
-
  config
   a=$((a+1))
   done
 }
-
-
-
-
-
 
 
 config(){
@@ -141,8 +107,6 @@ EOF
 #   sed -i "s|ApiHost: \"https://domain.com\"|ApiHost: \"${api_host}\"|" ./aiko.yml
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" 
 #   sed -i "s|NodeID: 41|NodeID: ${node_id}|" ./aiko.yml
-#   sed -i "s|DeviceLimit: 0|DeviceLimit: ${DeviceLimit}|" ./aiko.yml
-#   sed -i "s|SpeedLimit: 0|SpeedLimit: ${SpeedLimit}|" ./aiko.yml
 #   sed -i "s|CertDomain:\"node1.test.com\"|CertDomain: \"${CertDomain}\"|" ./aiko.yml
  }
 
@@ -151,19 +115,6 @@ case "${num}" in
 openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/XrayR/443.crt -keyout /etc/XrayR/443.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
 cd /etc/Aiko-Server
   cat >aiko.yml <<EOF
-Log:
-  Level: none # Log level: none, error, warning, info, debug 
-  AccessPath: # /etc/XrayR/access.Log
-  ErrorPath: # /etc/XrayR/error.log
-DnsConfigPath: # /etc/XrayR/dns.json # Path to dns config, check https://xtls.github.io/config/dns.html for help
-RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://xtls.github.io/config/routing.html for help
-OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/outbound.html for help
-ConnectionConfig:
-  Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 30 # Connection idle time limit, Second
-  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
-  BufferSize: 64 # The internal cache size of each connection, kB  
 Nodes:
 EOF
 pre_install
@@ -172,19 +123,6 @@ Aiko-Server restart
  ;;
  2) cd /etc/XrayR
 cat >config.yml <<EOF
-Log:
-  Level: none # Log level: none, error, warning, info, debug 
-  AccessPath: # /etc/XrayR/access.Log
-  ErrorPath: # /etc/XrayR/error.log
-DnsConfigPath: # /etc/XrayR/dns.json # Path to dns config, check https://xtls.github.io/config/dns.html for help
-RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://xtls.github.io/config/routing.html for help
-OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/outbound.html for help
-ConnectionConfig:
-  Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 30 # Connection idle time limit, Second
-  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
-  BufferSize: 64 # The internal cache size of each connection, kB 
 Nodes:
 EOF
 pre_install
